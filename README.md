@@ -1148,27 +1148,31 @@ python manage.py runserver
 ## 7. Output Screenshots
 
 **Screenshot 1 — Home Page**
-![Home Page](https://raw.githubusercontent.com/sunillamichhane/django-lab/main/screenshots/home.png)
+![Home Page](outputs/homescreen.png)
 _Home page showing request info (IP address, browser) and navigation for authenticated vs anonymous users._
 
 **Screenshot 2 — User Registration**
-![Register](https://raw.githubusercontent.com/sunillamichhane/django-lab/main/screenshots/register.png)
+![Register](outputs/registerpage.pngregister.png)
 _Registration form with validation — demonstrates Django Form rendering and UserCreationForm._
 
 **Screenshot 3 — Login Page**
-![Login](https://raw.githubusercontent.com/sunillamichhane/django-lab/main/screenshots/login.png)
+![Login](outputs/loginpage.png)
 _Login page — after successful login, Django creates a session and sets the sessionid cookie._
 
 **Screenshot 4 — Blog Post List**
-![Post List](https://raw.githubusercontent.com/sunillamichhane/django-lab/main/screenshots/post_list.png)
+![Post List](outputs/blogsposts.png)
 _All published posts fetched from SQLite via ORM. Edit/Delete buttons visible only to post authors._
 
 **Screenshot 5 — Create Post Form**
-![Create Post](https://raw.githubusercontent.com/sunillamichhane/django-lab/main/screenshots/post_create.png)
+![Create Post](outputs/createposts.png)
 _ModelForm for creating a blog post. Includes CSRF token hidden field._
 
-**Screenshot 6 — Task Form with Session Data**
-![Task Form](https://raw.githubusercontent.com/sunillamichhane/django-lab/main/screenshots/task_form.png)
+**Screenshot 6 — Create TaskForm**
+![Create Post](outputs/createtasks.png)
+_ModelForm for creating a blog post. Includes CSRF token hidden field._
+
+**Screenshot 7 — Task Form with Session Data**
+![Task Form](outputs/taskspage.png)
 _Task creation form showing the last submitted task title read from the session._
 
 ---
