@@ -1,0 +1,33 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Home — Django Lab{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-8">
+    <h1 class="mb-3">Welcome to Django Lab</h1>
+    <p class="lead">This project demonstrates core Django concepts.</p>
+
+    {% if user.is_authenticated %}
+      <p>Logged in as: <strong>{{ user.username }}</strong></p>
+      <a href="{% url 'post_create' %}" class="btn btn-dark">Create New Post</a>
+      <a href="{% url 'task_form' %}"   class="btn btn-outline-dark ms-2">New Task</a>
+    {% else %}
+      <a href="{% url 'login' %}"    class="btn btn-dark">Login</a>
+      <a href="{% url 'register' %}" class="btn btn-outline-dark ms-2">Register</a>
+    {% endif %}
+  </div>
+
+  <div class="col-md-4">
+    <div class="card bg-white border-dark">
+      <div class="card-body">
+        <h6 class="card-title">Request Info</h6>
+        <small>
+          <strong>IP:</strong> {{ client_ip }}<br>
+          <strong>Browser:</strong> {{ user_agent|truncatechars:60 }}
+        </small>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

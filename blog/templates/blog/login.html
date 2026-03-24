@@ -1,0 +1,36 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-5 mt-5">
+    <div class="card border-dark shadow-sm">
+      <div class="card-body p-4">
+        <h3 class="mb-4 text-center fw-bold">Login</h3>
+        
+        <form method="POST">
+          {% csrf_token %}
+          
+          <div class="mb-3">
+            <label class="form-label fw-bold">Username</label>
+            <input type="text" name="username" class="form-control border-dark" required autofocus>
+          </div>
+          
+          <div class="mb-4">
+            <label class="form-label fw-bold">Password</label>
+            <input type="password" name="password" class="form-control border-dark" required>
+          </div>
+          
+          <button type="submit" class="btn btn-dark w-100 fw-bold">Login</button>
+        </form>
+        
+        <hr class="my-4 border-dark">
+        <p class="text-center mb-0 small">
+          Don't have an account? <a href="{% url 'register' %}" class="text-dark fw-bold text-decoration-underline">Register here</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

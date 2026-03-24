@@ -1,0 +1,25 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Confirm Logout{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-5 mt-5">
+    <div class="card border-dark shadow-sm rounded-0">
+      <div class="card-body p-5 text-center">
+        <h3 class="mb-4 fw-bold">Sign Out</h3>
+        
+        <p class="fs-5 mb-4 text-muted">Are you sure you want to sign out?</p>
+
+        <form method="POST">
+          {% csrf_token %}
+          <div class="d-grid gap-3 mt-4">
+            <button type="submit" class="btn btn-dark btn-lg rounded-0 fw-bold">Sign Out</button>
+            <a href="{% url 'home' %}" class="btn btn-outline-dark btn-lg rounded-0 fw-bold">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

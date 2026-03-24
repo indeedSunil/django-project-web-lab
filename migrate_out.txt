@@ -1,0 +1,7 @@
+nohup: ignoring input
+No changes detected in app 'blog'
+Operations to perform:
+  Apply all migrations: admin, auth, blog, contenttypes, sessions
+Running migrations:
+  No migrations to apply.
+MIGRATION_DONE

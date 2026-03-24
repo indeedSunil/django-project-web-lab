@@ -1,0 +1,45 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}{{ action }} Post{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <h2 class="mb-4">{{ action }} Post</h2>
+
+    <div class="card border-dark shadow-sm">
+      <div class="card-body p-4">
+        <form method="POST">
+          {% csrf_token %}
+          
+          <div class="mb-3">
+            <label class="form-label fw-bold">Title</label>
+            {{ form.title }}
+            {% if form.title.errors %}
+              <div class="text-danger small mt-1">{{ form.title.errors }}</div>
+            {% endif %}
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-bold">Content</label>
+            {{ form.content }}
+            {% if form.content.errors %}
+              <div class="text-danger small mt-1">{{ form.content.errors }}</div>
+            {% endif %}
+          </div>
+
+          <div class="mb-4 form-check">
+            {{ form.is_published }}
+            <label class="form-check-label fw-bold ms-1">Published</label>
+          </div>
+
+          <div class="d-flex justify-content-end">
+            <a href="{% url 'post_list' %}" class="btn btn-outline-dark me-2">Cancel</a>
+            <button type="submit" class="btn btn-dark">{{ action }} Post</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}New Task{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-7">
+    <h2 class="mb-4">Create New Task</h2>
+
+    {% if last_task %}
+      <div class="alert alert-dark border-dark rounded-0 mb-4">
+        <i class="bi bi-info-circle me-2"></i> Your last task was: <strong>{{ last_task }}</strong>
+      </div>
+    {% endif %}
+
+    <div class="card border-dark shadow-sm">
+      <div class="card-body p-4">
+        <form method="POST">
+          {% csrf_token %}
+          
+          <div class="mb-3">
+            <label class="form-label fw-bold">Title</label>
+            {{ form.title }}
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-bold">Description</label>
+            {{ form.description }}
+          </div>
+          <div class="row mb-4">
+            <div class="col-md-6 mb-3 mb-md-0">
+              <label class="form-label fw-bold">Status</label>
+              {{ form.status }}
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-bold">Due Date</label>
+              {{ form.due_date }}
+            </div>
+          </div>
+          
+          <div class="d-flex justify-content-end mt-4">
+            <a href="{% url 'task_list' %}" class="btn btn-outline-dark me-2">Cancel</a>
+            <button type="submit" class="btn btn-dark text-white fw-bold">Save Task</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    
+    <div class="mb-5 border-bottom border-dark border-2 pb-4">
+      <h1 class="display-4 fw-bold mb-3">{{ post.title }}</h1>
+      <div class="d-flex align-items-center justify-content-between text-muted small fw-semibold">
+        <span>By <strong class="text-dark"><i class="bi bi-person-circle"></i> {{ post.author.username }}</strong></span>
+        <span><i class="bi bi-calendar3"></i> {{ post.created_at|date:"F j, Y" }}</span>
+      </div>
+    </div>
+
+    <article class="lh-lg fs-5 mb-5 text-dark">
+      {{ post.content|linebreaks }}
+    </article>
+
+    <div class="d-flex justify-content-between align-items-center mt-5 pt-4 border-top border-dark border-2">
+      <a href="{% url 'post_list' %}" class="btn btn-outline-dark fw-bold px-4 py-2 rounded-0">
+        <i class="bi bi-arrow-left me-2"></i>Back to Posts
+      </a>
+      
+      {% if user == post.author %}
+        <div>
+          <a href="{% url 'post_update' post.pk %}" class="btn btn-dark fw-bold px-4 py-2 rounded-0 me-2">Edit Post</a>
+          <a href="{% url 'post_delete' post.pk %}" class="btn btn-danger fw-bold px-4 py-2 rounded-0">Delete</a>
+        </div>
+      {% endif %}
+    </div>
+
+  </div>
+</div>
+{% endblock %}
