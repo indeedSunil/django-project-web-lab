@@ -1,9 +1,9 @@
 # Lab Report: Django Web Application Core Concepts Implementation
 
-**Name:** Sunil Lamichhane
-**Roll:** 080BCT090
-**Subject:** Web Technology
-**Lab:** Django Framework — Requests, Forms, Sessions, Routing, Middleware, ORM, Auth
+**Name:** Sunil Lamichhane <br>
+**Roll:** 080BCT090 <br>
+**Subject:** Web Technology <br>
+**Lab:** Django Framework — Requests, Forms, Sessions, Routing, Middleware, ORM, Auth <br>
 
 ---
 
@@ -32,6 +32,7 @@
 This project is a **Blog & Task Manager Web Application** built with Django. It is designed as a single project that demonstrates all the major concepts of Django development in one place.
 
 The application allows users to:
+
 - Register and log in (Authentication & Authorization)
 - Create, read, update, and delete blog posts (CRUD + ORM)
 - Submit and manage tasks using forms with session-based feedback
@@ -41,6 +42,7 @@ The application allows users to:
 The project uses **SQLite** as its relational database (via Django ORM) and also demonstrates how a **NoSQL** (MongoDB via `djongo` or `pymongo`) integration would be structured for comparison.
 
 **Tech Stack:**
+
 - Python 3.11
 - Django 4.2
 - SQLite (Relational)
@@ -76,13 +78,13 @@ templates/  (HTML rendered with context data)
 Response → Browser
 ```
 
-| MVT Layer | Django Component | Responsibility |
-|---|---|---|
-| **Model** | `models.py` | Defines data structure, handles DB operations via ORM |
-| **View** | `views.py` | Handles request logic, processes forms, calls models, returns response |
-| **Template** | `templates/*.html` | Renders the HTML with data passed from the view |
-| **URL Router** | `urls.py` | Maps incoming URL patterns to the correct view function |
-| **Middleware** | `middleware.py` | Intercepts every request/response for logging, auth, security |
+| MVT Layer      | Django Component   | Responsibility                                                         |
+| -------------- | ------------------ | ---------------------------------------------------------------------- |
+| **Model**      | `models.py`        | Defines data structure, handles DB operations via ORM                  |
+| **View**       | `views.py`         | Handles request logic, processes forms, calls models, returns response |
+| **Template**   | `templates/*.html` | Renders the HTML with data passed from the view                        |
+| **URL Router** | `urls.py`          | Maps incoming URL patterns to the correct view function                |
+| **Middleware** | `middleware.py`    | Intercepts every request/response for logging, auth, security          |
 
 **Difference from MVC:**
 In classic MVC, the Controller handles routing and logic. In Django's MVT, the **View** acts as the controller, the **Template** acts as the View (presentation), and the URL router acts as the dispatcher.
@@ -795,53 +797,62 @@ class ErrorHandlerMiddleware:
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% block title %}Django Lab{% endblock %}</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}Django Project{% endblock %}</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">Django Lab</a>
+        <div class="navbar-nav ms-auto">
+          <a class="nav-link" href="{% url 'post_list' %}">Posts</a>
+          <a class="nav-link" href="{% url 'task_list' %}">Tasks</a>
 
-  <!-- Navigation Bar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand" href="{% url 'home' %}">Django Lab</a>
-      <div class="navbar-nav ms-auto">
-        <a class="nav-link" href="{% url 'post_list' %}">Posts</a>
-        <a class="nav-link" href="{% url 'task_list' %}">Tasks</a>
-
-        {% if user.is_authenticated %}
+          {% if user.is_authenticated %}
           <span class="nav-link text-light">Hello, {{ user.username }}</span>
           <form method="POST" action="{% url 'logout' %}" class="d-inline">
             {% csrf_token %}
-            <button type="submit" class="btn btn-sm btn-outline-light ms-2">Logout</button>
+            <button type="submit" class="btn btn-sm btn-outline-light ms-2">
+              Logout
+            </button>
           </form>
-        {% else %}
+          {% else %}
           <a class="nav-link" href="{% url 'login' %}">Login</a>
           <a class="nav-link" href="{% url 'register' %}">Register</a>
-        {% endif %}
+          {% endif %}
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 
-  <!-- Flash Messages -->
-  <div class="container mt-3">
-    {% for message in messages %}
-      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+    <!-- Flash Messages -->
+    <div class="container mt-3">
+      {% for message in messages %}
+      <div
+        class="alert alert-{{ message.tags }} alert-dismissible fade show"
+        role="alert"
+      >
         {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+        ></button>
       </div>
-    {% endfor %}
-  </div>
+      {% endfor %}
+    </div>
 
-  <!-- Main Content Block -->
-  <main class="container my-4">
-    {% block content %}{% endblock %}
-  </main>
+    <!-- Main Content Block -->
+    <main class="container my-4">{% block content %}{% endblock %}</main>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
 ```
 
@@ -849,11 +860,8 @@ class ErrorHandlerMiddleware:
 
 ```html
 <!-- blog/templates/blog/home.html -->
-
-{% extends 'blog/base.html' %}
-
-{% block title %}Home — Django Lab{% endblock %}
-
+gi
+{% extends 'blog/base.html' %} {% block title %}Home — Django Lab{% endblock %}
 {% block content %}
 <div class="row">
   <div class="col-md-8">
@@ -861,12 +869,16 @@ class ErrorHandlerMiddleware:
     <p class="lead">This project demonstrates core Django concepts.</p>
 
     {% if user.is_authenticated %}
-      <p>Logged in as: <strong>{{ user.username }}</strong></p>
-      <a href="{% url 'post_create' %}" class="btn btn-primary">Create New Post</a>
-      <a href="{% url 'task_form' %}"   class="btn btn-secondary ms-2">New Task</a>
+    <p>Logged in as: <strong>{{ user.username }}</strong></p>
+    <a href="{% url 'post_create' %}" class="btn btn-primary"
+      >Create New Post</a
+    >
+    <a href="{% url 'task_form' %}" class="btn btn-secondary ms-2">New Task</a>
     {% else %}
-      <a href="{% url 'login' %}"    class="btn btn-primary">Login</a>
-      <a href="{% url 'register' %}" class="btn btn-outline-primary ms-2">Register</a>
+    <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+    <a href="{% url 'register' %}" class="btn btn-outline-primary ms-2"
+      >Register</a
+    >
     {% endif %}
   </div>
 
@@ -876,7 +888,7 @@ class ErrorHandlerMiddleware:
       <div class="card-body">
         <h6 class="card-title">Request Info</h6>
         <small>
-          <strong>IP:</strong> {{ client_ip }}<br>
+          <strong>IP:</strong> {{ client_ip }}<br />
           <strong>Browser:</strong> {{ user_agent|truncatechars:60 }}
         </small>
       </div>
@@ -891,41 +903,39 @@ class ErrorHandlerMiddleware:
 ```html
 <!-- blog/templates/blog/post_list.html -->
 
-{% extends 'blog/base.html' %}
-
-{% block title %}All Posts{% endblock %}
-
-{% block content %}
+{% extends 'blog/base.html' %} {% block title %}All Posts{% endblock %} {% block
+content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
   <h2>Blog Posts</h2>
   {% if user.is_authenticated %}
-    <a href="{% url 'post_create' %}" class="btn btn-primary">+ New Post</a>
+  <a href="{% url 'post_create' %}" class="btn btn-primary">+ New Post</a>
   {% endif %}
 </div>
 
-{% if posts %}
-  {% for post in posts %}
-    <div class="card mb-3">
-      <div class="card-body">
-        <h5 class="card-title">
-          <a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a>
-        </h5>
-        <p class="card-text text-muted">
-          By {{ post.author.username }} on {{ post.created_at|date:"F j, Y" }}
-        </p>
-        <p class="card-text">{{ post.content|truncatewords:30 }}</p>
+{% if posts %} {% for post in posts %}
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title">
+      <a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a>
+    </h5>
+    <p class="card-text text-muted">
+      By {{ post.author.username }} on {{ post.created_at|date:"F j, Y" }}
+    </p>
+    <p class="card-text">{{ post.content|truncatewords:30 }}</p>
 
-        {% if user == post.author %}
-          <a href="{% url 'post_update' post.pk %}" class="btn btn-sm btn-warning">Edit</a>
-          <a href="{% url 'post_delete' post.pk %}" class="btn btn-sm btn-danger ms-1">Delete</a>
-        {% endif %}
-      </div>
-    </div>
-  {% endfor %}
-{% else %}
-  <p class="text-muted">No posts yet. Be the first to create one!</p>
-{% endif %}
-{% endblock %}
+    {% if user == post.author %}
+    <a href="{% url 'post_update' post.pk %}" class="btn btn-sm btn-warning"
+      >Edit</a
+    >
+    <a href="{% url 'post_delete' post.pk %}" class="btn btn-sm btn-danger ms-1"
+      >Delete</a
+    >
+    {% endif %}
+  </div>
+</div>
+{% endfor %} {% else %}
+<p class="text-muted">No posts yet. Be the first to create one!</p>
+{% endif %} {% endblock %}
 ```
 
 #### post_form.html
@@ -933,23 +943,20 @@ class ErrorHandlerMiddleware:
 ```html
 <!-- blog/templates/blog/post_form.html -->
 
-{% extends 'blog/base.html' %}
-
-{% block title %}{{ action }} Post{% endblock %}
-
+{% extends 'blog/base.html' %} {% block title %}{{ action }} Post{% endblock %}
 {% block content %}
 <div class="row justify-content-center">
   <div class="col-md-8">
     <h2>{{ action }} Post</h2>
 
     <form method="POST">
-      {% csrf_token %}  <!-- Django CSRF protection token -->
+      {% csrf_token %}
+      <!-- Django CSRF protection token -->
 
       <div class="mb-3">
         <label class="form-label">Title</label>
-        {{ form.title }}
-        {% if form.title.errors %}
-          <div class="text-danger small">{{ form.title.errors }}</div>
+        {{ form.title }} {% if form.title.errors %}
+        <div class="text-danger small">{{ form.title.errors }}</div>
         {% endif %}
       </div>
 
@@ -976,11 +983,8 @@ class ErrorHandlerMiddleware:
 ```html
 <!-- blog/templates/blog/login.html -->
 
-{% extends 'blog/base.html' %}
-
-{% block title %}Login{% endblock %}
-
-{% block content %}
+{% extends 'blog/base.html' %} {% block title %}Login{% endblock %} {% block
+content %}
 <div class="row justify-content-center">
   <div class="col-md-5">
     <div class="card shadow-sm">
@@ -992,20 +996,32 @@ class ErrorHandlerMiddleware:
 
           <div class="mb-3">
             <label class="form-label">Username</label>
-            <input type="text" name="username" class="form-control" required autofocus>
+            <input
+              type="text"
+              name="username"
+              class="form-control"
+              required
+              autofocus
+            />
           </div>
 
           <div class="mb-3">
             <label class="form-label">Password</label>
-            <input type="password" name="password" class="form-control" required>
+            <input
+              type="password"
+              name="password"
+              class="form-control"
+              required
+            />
           </div>
 
           <button type="submit" class="btn btn-primary w-100">Login</button>
         </form>
 
-        <hr>
+        <hr />
         <p class="text-center mb-0">
-          Don't have an account? <a href="{% url 'register' %}">Register here</a>
+          Don't have an account?
+          <a href="{% url 'register' %}">Register here</a>
         </p>
       </div>
     </div>
@@ -1020,20 +1036,17 @@ class ErrorHandlerMiddleware:
 <!-- blog/templates/blog/task_form.html -->
 <!-- Demonstrates session data displayed in template -->
 
-{% extends 'blog/base.html' %}
-
-{% block title %}New Task{% endblock %}
-
-{% block content %}
+{% extends 'blog/base.html' %} {% block title %}New Task{% endblock %} {% block
+content %}
 <div class="row justify-content-center">
   <div class="col-md-7">
     <h2>Create New Task</h2>
 
     <!-- Show last created task from session -->
     {% if last_task %}
-      <div class="alert alert-info">
-        Your last task was: <strong>{{ last_task }}</strong>
-      </div>
+    <div class="alert alert-info">
+      Your last task was: <strong>{{ last_task }}</strong>
+    </div>
     {% endif %}
 
     <form method="POST">
@@ -1104,13 +1117,13 @@ When a user logs in, Django creates a session record in the database and sends a
 
 ## 6. GitHub Repository
 
-**Repository Link:** [https://github.com/sunillamichhane/django-lab](https://github.com/sunillamichhane/django-lab)
+**Repository Link:** [https://github.com/indeedSunil/django-project-web-lab](https://github.com/indeedSunil/django-project-web-lab)
 
 **To run the project locally:**
 
 ```bash
 # Clone the repository
-git clone https://github.com/sunillamichhane/django-lab.git
+git clone https://github.com/indeedSunil/django-project-web-lab.git
 cd django-lab
 
 # Create virtual environment
@@ -1136,55 +1149,30 @@ python manage.py runserver
 
 **Screenshot 1 — Home Page**
 ![Home Page](https://raw.githubusercontent.com/sunillamichhane/django-lab/main/screenshots/home.png)
-*Home page showing request info (IP address, browser) and navigation for authenticated vs anonymous users.*
+_Home page showing request info (IP address, browser) and navigation for authenticated vs anonymous users._
 
 **Screenshot 2 — User Registration**
 ![Register](https://raw.githubusercontent.com/sunillamichhane/django-lab/main/screenshots/register.png)
-*Registration form with validation — demonstrates Django Form rendering and UserCreationForm.*
+_Registration form with validation — demonstrates Django Form rendering and UserCreationForm._
 
 **Screenshot 3 — Login Page**
 ![Login](https://raw.githubusercontent.com/sunillamichhane/django-lab/main/screenshots/login.png)
-*Login page — after successful login, Django creates a session and sets the sessionid cookie.*
+_Login page — after successful login, Django creates a session and sets the sessionid cookie._
 
 **Screenshot 4 — Blog Post List**
 ![Post List](https://raw.githubusercontent.com/sunillamichhane/django-lab/main/screenshots/post_list.png)
-*All published posts fetched from SQLite via ORM. Edit/Delete buttons visible only to post authors.*
+_All published posts fetched from SQLite via ORM. Edit/Delete buttons visible only to post authors._
 
 **Screenshot 5 — Create Post Form**
 ![Create Post](https://raw.githubusercontent.com/sunillamichhane/django-lab/main/screenshots/post_create.png)
-*ModelForm for creating a blog post. Includes CSRF token hidden field.*
+_ModelForm for creating a blog post. Includes CSRF token hidden field._
 
 **Screenshot 6 — Task Form with Session Data**
 ![Task Form](https://raw.githubusercontent.com/sunillamichhane/django-lab/main/screenshots/task_form.png)
-*Task creation form showing the last submitted task title read from the session.*
+_Task creation form showing the last submitted task title read from the session._
 
 ---
 
 ## 8. Conclusion
 
 This lab successfully demonstrated the core pillars of Django web development in a single cohesive project.
-
-### Summary Table
-
-| Concept | Implementation |
-|---|---|
-| Requests & Responses | `HttpRequest`, `render()`, `redirect()`, `JsonResponse()` |
-| Form Handling | `ModelForm`, `form.is_valid()`, `form.save()` |
-| Sessions | `request.session`, `SESSION_COOKIE_*` settings |
-| URL Routing | `path()`, named URLs, project + app `urls.py` |
-| Middleware | Custom logging, auth guard, security headers, error handler |
-| Templating | `{% extends %}`, `{% block %}`, template filters |
-| Relational DB + ORM | Django ORM with SQLite, `Post.objects.filter()`, ForeignKey |
-| NoSQL Comparison | pymongo `insert_one`, `find`, `update_one`, `delete_one` |
-| Authentication | `authenticate()`, `login()`, `logout()`, `@login_required` |
-| Authorization | `LoginRequiredMiddleware` |
-| Cookies & Sessions | `sessionid` cookie, `HttpOnly`, `Secure` flags |
-| Security | CSRF tokens, password hashing, security headers |
-
-### Key Takeaways
-
-1. Django's MVT pattern cleanly separates data logic (Models), request logic (Views), and presentation (Templates).
-2. The ORM eliminates raw SQL, provides SQL injection protection, and allows database switching.
-3. Middleware provides centralized handling of logging, authentication, and security.
-4. Django's built-in authentication system handles critical security out of the box.
-5. Forms reduce boilerplate and enforce server-side validation.
