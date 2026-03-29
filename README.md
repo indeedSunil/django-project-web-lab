@@ -198,7 +198,7 @@ python manage.py runserver
 
 
 **Screenshot 2 — User Registration**
-![Register](outputs/registerpage.pngregister.png)
+![Register](outputs/registerpage.png)
 
 
 **Screenshot 3 — Login Page**
