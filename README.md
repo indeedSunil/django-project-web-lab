@@ -170,9 +170,7 @@ When a user logs in, Django creates a session record in the database and sends a
 
 ---
 
-## 6. GitHub Repository
-
-**Repository Link:** [https://github.com/indeedSunil/django-project-web-lab](https://github.com/indeedSunil/django-project-web-lab)
+## 6.Running Locally
 
 **To run the project locally:**
 
